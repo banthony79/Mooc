@@ -32,7 +32,7 @@ public class TodoList {
     }
     
     public void remove(int number) {
-       tasks.remove(number + 1); 
+       tasks.remove(number -1); 
     }
     
     public ArrayList<String> getList() {
