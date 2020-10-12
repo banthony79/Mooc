@@ -14,7 +14,7 @@ public class Story {
         System.out.println("Once upon a time there was " + characterName + ", who was " + job + "." + "\n" +
 "On the way to work, " + characterName + " reflected on life.\n" +
 "Perhaps " + characterName + " will not be " + job + " forever.");
-        // Write your program here
+        
 
     }
 }
