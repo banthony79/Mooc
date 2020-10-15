@@ -4,9 +4,9 @@ public class Main {
     public static void main(String[] args) {
 
       
-SimpleCollection c = new SimpleCollection("test");
+        SimpleCollection c = new SimpleCollection("test");
 
-c.add("Wolverine");
+        c.add("Wolverine");
 
         System.out.println(c);
         

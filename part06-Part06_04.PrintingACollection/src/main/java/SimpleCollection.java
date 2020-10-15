@@ -29,23 +29,31 @@ public class SimpleCollection {
     
     
     public String toString() {
-    String print = "";
-String element = "";
-int i = 0;
-if (this.elements.isEmpty()) {
-return print + "The collection " + this.name + " is empty.";
-}
-for (String string: elements) {
-element = element + string.trim() + "\n";
-i++;
-}
-if (i==1) {
-return print + "The collection " + this.name + " has " + i + " element:\n" + element.trim();
-}
-return print + "The collection " + this.name + " has " + i + " elements:\n" + element.trim();
- 
-}
+        String statement = "The collection " + this.name + " has " + elements.size() + " element";
+        if (elements.isEmpty()) {
+            return "The collection " + this.name + " is empty."; 
+        }
+        
+    if (overOne()) {
+        System.out.println(statement + "s:");
+    } else {
+        System.out.println(statement + ":");
+    }
+    String phrase = "";
+   
+        for (int i = 0; i < elements.size(); i++) {
+            if (i  != elements.size() - 1) {
+        phrase = phrase + elements.get(i) + "\n"; 
+        } else {
+        phrase = phrase + elements.get(i); 
+     
+        }
+    
+    }
+  return phrase;
+    }
+    
+        
 }
 
-// return printOutput + "\n" +
-            //"on the ride:\n" + peopleOnRide;
+
