@@ -9,28 +9,50 @@
     public class RecipeSearch {
 
         public static ArrayList<Recipe> recipes = new ArrayList<>();
+        public static RecipeBook book = new RecipeBook(); 
 
         public static void main(String[] args) {
+        
+        
+        
         Scanner scanner = new Scanner(System.in); 
         System.out.println("File to read:");
-         String answer = scanner.nextLine();
+        String answer = scanner.nextLine();
         boolean quit = false;
         
         
-        while (!quit) {
-        try {  Scanner fileScanner = new Scanner(Paths.get(answer));
         
+        try {  Scanner fileScanner = new Scanner(Paths.get(answer));
+        book.createRecipes(fileScanner); 
+        while (!quit) {
         commands();
         System.out.println();
-        System.out.println("Enter command");
+        System.out.println("Enter command:");
         String choice = scanner.nextLine(); 
         
+        
         if (choice.equals("list")) { 
-           createRecipes(fileScanner); 
+           book.listRecipes();  
+        }
+           
+        if (choice.equals("find name")) {
+            System.out.println("Searched word: ");
+            String searchedWord = scanner.nextLine(); 
+            search(searchedWord); 
+        }
+        
+        if (choice.equals("find cooking time")) {
+            System.out.println("Max cooking time: ");
+            int time = Integer.valueOf(scanner.nextLine()); 
+            searchTime(time); 
+        }
+        
+        
            
           
-        } else if (choice.equals("stop")) {
+        else if (choice.equals("stop")) {
             quit = true; 
+        }
         }
         
 
@@ -39,68 +61,26 @@
         }
 
         }
-        }
-
-
-        public static void createRecipes(Scanner scanner) {
-           Recipe recipe = new Recipe(null, 0);
-           int count = 0; String input = ""; 
-           while (scanner.hasNextLine()) {
-           input = scanner.nextLine();
-          
-            
-           
-         
-           if (count == 0) {
-              recipe = new Recipe(null, 0); 
-          }
-           count++;
-           if (count == 1) {
-               recipe.setName(input);
-           }
-           if (count == 2) {
-               recipe.setTimer(Integer.valueOf(input));
-           }
-           if (!input.isEmpty() && count > 2) {
-               recipe.addIngredient(input);
-           }
-           if (input.isEmpty() || (!scanner.hasNextLine())) {
-               addRecipe(recipe); 
-               count = 0; 
-           } 
-           
-       }
-           
-           listRecipes(); 
-           
-        }
         
         
-        public static void listRecipes() {
-            System.out.println();
-            System.out.println("Recipes: ");
-            for (Recipe recipe: recipes) {
-                System.out.println(recipe);
-            }
-            System.out.println();
-        }
+        
+        
 
         public static void commands() {
             System.out.println("Commands:"); 
             System.out.println("list - lists the recipes");
             System.out.println("stop - stops the program");
-
+            System.out.println("find name - searches recipes by name");
+            System.out.println("find cooking time - searches recipes by cooking time"); 
 
         }
         
-        public static void addRecipe(Recipe recipe) {
-            recipes.add(recipe);
-            //System.out.println(recipe.getName() + " added"); 
+        public static void search(String word) {
+            System.out.println(book.findWord(word)); 
         }
         
-        
-        
-   
+        public static void searchTime(int time) {
+           book.findCookingTime(time);
+        }
 
-
-    }
+}

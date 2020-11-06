@@ -39,6 +39,10 @@ public class Recipe {
         return this.name; 
     }
     
+    public int getCookingTime() {
+        return this.cookingTime; 
+    }
+    
     public void readIngredients() {
         for (String ingredient: ingredients) {
         System.out.println(ingredient);
@@ -53,7 +57,16 @@ public class Recipe {
         this.cookingTime = time; 
     }
      
-    
+     public boolean findString(String inquiry) {
+        for (String string: ingredients) {
+            if (string.equals(inquiry)) {
+                return true; 
+            }
+ 
+        }
+   return false; }
+     
+     
     
    
 }
