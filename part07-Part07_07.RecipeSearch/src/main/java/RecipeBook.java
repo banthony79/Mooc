@@ -54,8 +54,7 @@ public class RecipeBook {
         }
      
      public void listRecipes() {
-            System.out.println();
-            System.out.println("Recipes: ");
+            header(); 
             for (Recipe recipe: recipes) {
                 System.out.println(recipe);
             }
@@ -67,23 +66,42 @@ public class RecipeBook {
         }
         
      
-        public String findWord(String word) {
+        public void findWord(String word) {
+             header(); 
             for (Recipe recipe: recipes) {
-            if (recipe.findString(word)) {
-                return recipe.getName(); 
+                if (recipe.findString(word)) {
+                System.out.println(recipe); 
         }
   
      }
-     return null;   }
+      System.out.println();  }
+        
         
         
         public void findCookingTime(int time) {
-            for (Recipe recipe: recipes) {
+            header();
+            for (Recipe recipe: recipes) {      
             if (recipe.getCookingTime() <= time) {
                 System.out.println(recipe); 
                 }   
   
             }
+       System.out.println();  }
+        
+        
+        public void matchingName(String query) {
+            header(); 
+            for (Recipe recipe: recipes) {
+             if (recipe.getName().contains(query)) {
+                 System.out.println(recipe);
+             }
+         } 
+   System.out.println();  }
+        
+        private void header() {
+            System.out.println(); 
+            System.out.println("Recipes:");
+            
         }
    
 }

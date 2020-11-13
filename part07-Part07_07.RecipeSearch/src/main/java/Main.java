@@ -14,7 +14,6 @@
         public static void main(String[] args) {
         
         
-        
         Scanner scanner = new Scanner(System.in); 
         System.out.println("File to read:");
         String answer = scanner.nextLine();
@@ -30,41 +29,36 @@
         System.out.println("Enter command:");
         String choice = scanner.nextLine(); 
         
-        
-        if (choice.equals("list")) { 
-           book.listRecipes();  
-        }
-           
-        if (choice.equals("find name")) {
+        switch(choice) {
+            case "list":
+            book.listRecipes();  
+            break;
+            case "find name":
             System.out.println("Searched word: ");
             String searchedWord = scanner.nextLine(); 
-            search(searchedWord); 
-        }
-        
-        if (choice.equals("find cooking time")) {
+            searchName(searchedWord); 
+            break; 
+            case "find cooking time":
             System.out.println("Max cooking time: ");
             int time = Integer.valueOf(scanner.nextLine()); 
             searchTime(time); 
-        }
-        
-        
-           
-          
-        else if (choice.equals("stop")) {
+            break;
+            case "find ingredient": 
+            System.out.println("Ingredient:");
+            String ingredient = scanner.nextLine(); 
+            searchIngredients(ingredient); 
+            break;
+            case "stop":
             quit = true; 
+            break; 
         }
         }
-        
-
+    
         } catch (Exception e) {
             System.out.println("File not found");
         }
-
         }
-        
-        
-        
-        
+
 
         public static void commands() {
             System.out.println("Commands:"); 
@@ -72,15 +66,20 @@
             System.out.println("stop - stops the program");
             System.out.println("find name - searches recipes by name");
             System.out.println("find cooking time - searches recipes by cooking time"); 
+            System.out.println("find ingredient - searches recipes by ingredient");
 
         }
         
-        public static void search(String word) {
-            System.out.println(book.findWord(word)); 
+        public static void searchIngredients(String word) {
+            book.findWord(word); 
         }
         
         public static void searchTime(int time) {
            book.findCookingTime(time);
+        }
+        
+        public static void searchName(String word) {
+            book.matchingName(word); 
         }
 
 }
